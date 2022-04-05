@@ -20,7 +20,9 @@ public class ProductsService {
     public Product getById(Long id) {
         return productRepository.findById(id);
     }
-
+    public void deleteById(Long id){
+        productRepository.deleteById(id);
+    }
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }

@@ -20,6 +20,9 @@ public class ProductRepository {
         products.add(new Product(1L, "Bread", 40));
         products.add(new Product(2L, "Milk", 90));
         products.add(new Product(3L, "Cheese", 200));
+        products.add(new Product(4L, "Corn", 10));
+        products.add(new Product(5L, "Potato", 100));
+        products.add(new Product(6L, "Cucumber", 132));
     }
 
     public List<Product> findAll() {
@@ -33,7 +36,9 @@ public class ProductRepository {
     public Product findById(Long id) {
         return products.stream().filter(p -> p.getId().equals(id)).findFirst().get();
     }
-
+    public void deleteById(Long id){
+        this.products.removeIf(product -> product.getId().equals(id));
+    }
     public void save(Product product) {
         products.add(product);
     }

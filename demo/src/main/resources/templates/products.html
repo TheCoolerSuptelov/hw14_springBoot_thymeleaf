@@ -27,6 +27,9 @@
             <td>
                 <a th:href="@{'/products/show/' + ${product.id}}" th:text="Просмотреть"/>
             </td>
+            <td>
+                <a th:href="@{'/products/delete/' + ${product.id}}" th:text="Удалить"/>
+            </td>
         </tr>
         </tbody>
     </table>
