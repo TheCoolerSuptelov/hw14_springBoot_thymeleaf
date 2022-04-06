@@ -30,4 +30,7 @@ public class ProductsService {
     public void add(Product product) {
         productRepository.save(product);
     }
+    public void saveEditedProduct(Long id,String newTitle, int newPrice){
+        productRepository.editProduct(id, newTitle, newPrice);
+    }
 }

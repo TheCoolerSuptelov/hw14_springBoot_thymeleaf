@@ -42,4 +42,13 @@ public class ProductRepository {
     public void save(Product product) {
         products.add(product);
     }
+    public void editProduct(Long id, String newTitle, int newPrice){
+        //this.products.editById(id, newTitle, newPrice);
+        Product curProduct = findById(id);
+        if (curProduct.getTitle().equals(newTitle) && curProduct.getPrice()==newPrice){
+            return;
+        }
+        curProduct.setPrice(newPrice);
+        curProduct.setTitle(newTitle);
+    }
 }

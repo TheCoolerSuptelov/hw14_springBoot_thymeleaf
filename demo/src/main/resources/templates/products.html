@@ -10,7 +10,7 @@
 
 <body>
 <div class="container">
-    <table class="table table-hover">
+    <table class="table table-hover" id="TableData">
         <thead>
         <tr>
             <th>ID</th>
@@ -21,14 +21,21 @@
         </thead>
         <tbody>
         <tr th:each="product : ${products}">
-            <td th:text="${product.id}"/>
-            <td th:text="${product.title}"/>
-            <td th:text="${product.price}"/>
+
+<!--            <td><input th:field="*{books[__${itemStat.index}__].title}" /></td>-->
+            <td th:contenteditable th:field="@{'product.id'+${product.id}}" th:text="${product.id}"/>
+            <td th:field="@{'product.title'+${product.id}}" th:text="${product.title}"/>
+            <td th:field="@{'product.price'+${product.id}}" th:text="${product.price}"/>
+<!--            <td th:text="${product.title}"/>-->
+<!--            <td th:text="${product.price}"/>-->
             <td>
                 <a th:href="@{'/products/show/' + ${product.id}}" th:text="Просмотреть"/>
             </td>
             <td>
                 <a th:href="@{'/products/delete/' + ${product.id}}" th:text="Удалить"/>
+            </td>
+            <td>
+                <a th:href="@{'/products/save/' + ${product.id} +'?' + 'title='${product.title} + 'price=' +${product.price}}" th:text="Сохранить"/>
             </td>
         </tr>
         </tbody>
