@@ -23,9 +23,10 @@
         <tr th:each="product : ${products}">
 
 <!--            <td><input th:field="*{books[__${itemStat.index}__].title}" /></td>-->
-            <td th:contenteditable th:field="@{'product.id'+${product.id}}" th:text="${product.id}"/>
-            <td th:field="@{'product.title'+${product.id}}" th:text="${product.title}"/>
-            <td th:field="@{'product.price'+${product.id}}" th:text="${product.price}"/>
+            <div th:object = "${product}">
+            <td contenteditable="true" th:field="@{'product.id'+${product.id}}" th:text="${product.id}"/>
+            <td contenteditable="true" th:field="@{'product.title'+${product.id}}" th:text="${product.title}"/>
+            <td contenteditable="true" th:field="@{'product.price'+${product.id}}" th:text="${product.price}"/>
 <!--            <td th:text="${product.title}"/>-->
 <!--            <td th:text="${product.price}"/>-->
             <td>
@@ -35,8 +36,11 @@
                 <a th:href="@{'/products/delete/' + ${product.id}}" th:text="Удалить"/>
             </td>
             <td>
-                <a th:href="@{'/products/save/' + ${product.id} +'?' + 'title='${product.title} + 'price=' +${product.price}}" th:text="Сохранить"/>
+                <button th:action="@{'/products/save'(id=${product.id})}"  th:object="${product}" method="post" type="submit" class="btn btn-primary">Сохранить</button>
+<!-- <a th:action="@{'/products/save'(id=${product.id})}"  th:object="${product}" method="post" th:text="Сохранить"/>&ndash;&gt;-->
+<!--                <a th:href="@{'/products/save'(id=${product.id},title=${product.title},price=${product.price})}" th:text="Сохранить"/>-->
             </td>
+            </div>
         </tr>
         </tbody>
     </table>

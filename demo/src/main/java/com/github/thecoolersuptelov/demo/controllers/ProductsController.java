@@ -45,12 +45,10 @@ public class ProductsController {
         return "redirect:/products";
     }
 
-    @GetMapping("/save/{id}")
-    public String saveEditedProduct(Model model, @PathVariable(value = "id") Long id,
-                                    @RequestParam(value = "title", required = true) String newTitle,
-                                    @RequestParam(value = "price", required = true) int newPrice)
+    @PostMapping("/save")
+    public String saveEditedProduct(@ModelAttribute(value = "product") Product product)
     {
-        productsService.saveEditedProduct(id, newTitle, newPrice);
+       // productsService.saveEditedProduct(id, newTitle, newPrice);
         return "redirect:/products";
     }
 }
